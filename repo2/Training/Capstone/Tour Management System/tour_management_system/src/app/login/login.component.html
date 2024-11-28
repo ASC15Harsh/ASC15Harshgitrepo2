@@ -1,0 +1,12 @@
+<h1> Welcome to Tour Management System</h1>
+<form>
+    <label>Enter the email</label>
+    <input [(ngModel)] = "userobj.email" name="email" required>
+    <br />
+    <label>Enter the password</label>
+    <input [(ngModel)] = "userobj.password" name = "password" type="password" required>
+    <br />
+    <div class="error">{{ errorMessage }}</div>
+    <button (click) = "onlogin()">Login</button>
+    
+</form>
