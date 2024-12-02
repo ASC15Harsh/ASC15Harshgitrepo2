@@ -2,7 +2,7 @@
 2. Establish a Connection
 3. Create a Statement Object
 4. Execute Queries
-5. Process the ResultSet
+5. Proess the ResultSet
 6. Close Resources
 
 

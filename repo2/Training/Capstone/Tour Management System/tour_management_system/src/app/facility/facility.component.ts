@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-facility',
@@ -8,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './facility.component.css'
 })
 export class FacilityComponent {
-
+  router = inject(Router);
+  back(){
+    this.router.navigateByUrl('navbar');
+  }
 }

@@ -37,7 +37,7 @@ public class operations {
                         String firstName = scanner.next();
                         System.out.print("Enter last name: ");
                         String lastName = scanner.next();
-                        ResultSet rs = statement.executeQuery("SELECT MAX(user_id) AS max_id FROM user");
+                        ResultSet rs = statement.executeQuery("SELECT MAX(id) AS max_id FROM user");
                         int newUserId = 1;
                         if (rs.next()) {
                             newUserId = rs.getInt("max_id") + 1;
@@ -55,14 +55,14 @@ public class operations {
                         String ufirstName = scanner.next();
                         System.out.print("Enter last name: ");
                         String ulastName = scanner.next();
-                        int UpdateSet = statement.executeUpdate("UPDATE user SET email = '" + uemail + "', first_name = '" + ufirstName + "', last_name = '" + ulastName + "' WHERE user_id = " + uuid);
+                        int UpdateSet = statement.executeUpdate("UPDATE user SET email = '" + uemail + "', first_name = '" + ufirstName + "', last_name = '" + ulastName + "' WHERE id = " + uuid);
                         System.out.println(UpdateSet + " updated!");
                         break;
                     case 4:
                         System.out.println("Delete Operation");
                         System.out.print("Enter user_id to delete: ");
                         int userIdToDelete = scanner.nextInt();
-                        int DeleteSet = statement.executeUpdate("delete from user  where user_id = " + userIdToDelete);
+                        int DeleteSet = statement.executeUpdate("delete from user  where id = " + userIdToDelete);
                         System.out.println(DeleteSet + " deleted!");
                         break;
                     case 5:

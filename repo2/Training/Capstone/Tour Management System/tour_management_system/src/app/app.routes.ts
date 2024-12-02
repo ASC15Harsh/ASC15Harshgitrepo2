@@ -11,13 +11,13 @@ import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
     {path: '' , component : LoginComponent},
-    {path: 'booking' , component : BookingComponent},
-    {path: 'facility' , component : FacilityComponent},
-    {path: 'guest' , component : GuestComponent},
-    {path: 'hotel' , component : HotelComponent},
     {path: 'login' , component : LoginComponent},
     {path: 'navbar' , component : NavbarComponent, canActivate:[authGuard]},
-    {path: 'registration' , component : RegistrationComponent},
-    {path: 'review' , component : ReviewComponent},
+    {path: 'booking' , component : BookingComponent, canActivate:[authGuard]},
+    {path: 'hotel' , component : HotelComponent, canActivate:[authGuard]},
+    {path: 'guest' , component : GuestComponent, canActivate:[authGuard]},
+    {path: 'facility' , component : FacilityComponent, canActivate:[authGuard]},
+    {path: 'review' , component : ReviewComponent, canActivate:[authGuard]},
+    {path: 'registration' , component : RegistrationComponent, canActivate:[authGuard]},
 
 ];

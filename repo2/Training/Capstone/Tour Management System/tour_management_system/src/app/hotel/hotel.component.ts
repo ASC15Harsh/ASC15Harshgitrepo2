@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hotel',
@@ -8,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './hotel.component.css'
 })
 export class HotelComponent {
-
+  router = inject(Router);
+  back(){
+    this.router.navigateByUrl('navbar');
+  }
 }
