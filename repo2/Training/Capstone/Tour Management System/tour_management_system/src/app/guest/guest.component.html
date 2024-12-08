@@ -1,2 +1,70 @@
-<p>guest works!</p>
-<button type = "back" (click)="back()">Back</button>
+<p>Guest Management</p>
+
+
+<div *ngIf="currentGuest">
+  <h3>Edit Guest</h3>
+  <form (ngSubmit)="saveGuest()">
+    <label for="name">Name:</label>
+    <input type="text" [(ngModel)]="newGuest.name" name="name" required />
+
+    <label for="email">Email:</label>
+    <input type="email" [(ngModel)]="newGuest.email" name="email" required />
+
+    <label for="phone">Phone:</label>
+    <input type="text" [(ngModel)]="newGuest.phone" name="phone" required />
+
+    <label for="nationality">Nationality:</label>
+    <input type="text" [(ngModel)]="newGuest.nationality" name="nationality" required />
+
+    <button type="submit">Update Guest</button>
+  </form>
+</div>
+
+<div *ngIf="!currentGuest">
+  <h3>Add New Guest</h3>
+  <form (ngSubmit)="saveGuest()">
+    <label for="name">Name:</label>
+    <input type="text" [(ngModel)]="newGuest.name" name="name" required />
+
+    <label for="email">Email:</label>
+    <input type="email" [(ngModel)]="newGuest.email" name="email" required />
+
+    <label for="phone">Phone:</label>
+    <input type="text" [(ngModel)]="newGuest.phone" name="phone" required />
+
+    <label for="nationality">Nationality:</label>
+    <input type="text" [(ngModel)]="newGuest.nationality" name="nationality" required />
+
+    <button type="submit">Add Guest</button>
+  </form>
+</div>
+<br>
+<input type="text" [(ngModel)]="searchTerm" (input)="searchGuests()" placeholder="Search by name" />
+
+<div *ngIf="!currentGuest">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Nationality</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guest of guests">
+        <td>{{ guest.name }}</td>
+        <td>{{ guest.email }}</td>
+        <td>{{ guest.phone }}</td>
+        <td>{{ guest.nationality }}</td>
+        <td>
+          <button (click)="selectGuestForEdit(guest)">Edit</button>
+          <button (click)="deleteGuest(guest.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button (click)="back()">Back</button>

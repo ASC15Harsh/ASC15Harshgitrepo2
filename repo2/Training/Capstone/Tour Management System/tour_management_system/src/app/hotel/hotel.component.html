@@ -1,2 +1,78 @@
-<p>hotel works!</p>
-<button type = "back" (click)="back()">Back</button>
+<p>Hotel Management</p>
+
+<div *ngIf="currentHotel">
+  <h3>Edit Hotel</h3>
+  <form (ngSubmit)="saveHotel()">
+    <label for="name">Hotel Name:</label>
+    <input type="text" [(ngModel)]="newHotel.name" name="name" required />
+
+    <label for="location">Location:</label>
+    <input type="text" [(ngModel)]="newHotel.location" name="location" required />
+
+    <label for="rating">Rating:</label>
+    <input type="text" [(ngModel)]="newHotel.rating" name="rating" required />
+
+    <label for="price">Price:</label>
+    <input type="text" [(ngModel)]="newHotel.price" name="price" required />
+
+    <label for="rooms">Rooms:</label>
+    <input type="number" [(ngModel)]="newHotel.rooms" name="rooms" required />
+
+    <button type="submit">Update Hotel</button>
+  </form>
+</div>
+
+<div *ngIf="!currentHotel">
+  <h3>Add New Hotel</h3>
+  <form (ngSubmit)="saveHotel()">
+    <label for="name">Hotel Name:</label>
+    <input type="text" [(ngModel)]="newHotel.name" name="name" required />
+
+    <label for="location">Location:</label>
+    <input type="text" [(ngModel)]="newHotel.location" name="location" required />
+
+    <label for="rating">Rating:</label>
+    <input type="text" [(ngModel)]="newHotel.rating" name="rating" required />
+
+    <label for="price">Price:</label>
+    <input type="text" [(ngModel)]="newHotel.price" name="price" required />
+
+    <label for="rooms">Rooms:</label>
+    <input type="number" [(ngModel)]="newHotel.rooms" name="rooms" required />
+
+    <button type="submit">Add Hotel</button>
+  </form>
+</div>
+
+<br />
+<input type="text" [(ngModel)]="searchTerm" (input)="searchHotels()" placeholder="Search by name" />
+
+<div *ngIf="!currentHotel">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Rating</th>
+        <th>Price</th>
+        <th>Rooms</th> 
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let hotel of hotels">
+        <td>{{ hotel.name }}</td>
+        <td>{{ hotel.location }}</td>
+        <td>{{ hotel.rating }}</td>
+        <td>{{ hotel.price }}</td>
+        <td>{{ hotel.rooms }}</td>
+        <td>
+          <button (click)="selectHotelForEdit(hotel)">Edit</button>
+          <button (click)="deleteHotel(hotel.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button (click)="back()">Back</button>

@@ -11,9 +11,9 @@
         </thead>
         <tbody>
             <tr *ngFor="let employee of employees">
-                <td>{{ employee.EMAIL }}</td>
-                <td>{{ employee.FIRST_NAME }}</td>
-                <td>{{ employee.LAST_NAME }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
                 <td>
                     <button (click)="editEmployee(employee)">Edit</button>
                     <button (click)="deleteEmployee(employee.id)">Delete</button>
@@ -24,17 +24,17 @@
     
     <h4>Add New Employee</h4>
     <form (ngSubmit)="addEmployee()">
-        <input [(ngModel)]="newEmployee.EMAIL" name="EMAIL" placeholder="EMAIL" required />
-        <input [(ngModel)]="newEmployee.FIRST_NAME" name="FIRST_NAME" placeholder="FIRST_NAME" required/>
-        <input [(ngModel)]="newEmployee.LAST_NAME" name="LAST_NAME" placeholder="LAST_NAME" required />
+        <input [(ngModel)]="newEmployee.email" name="email" placeholder="email" required />
+        <input [(ngModel)]="newEmployee.first_name" name="first_name" placeholder="first_name" required/>
+        <input [(ngModel)]="newEmployee.last_name" name="last_name" placeholder="last_name" required />
         <button type="submit">Add Employee</button>
     </form>
     
     <h4 *ngIf="editingEmployee">Update Employee</h4>
     <form *ngIf="editingEmployee" (ngSubmit)="updateEmployee()">
-        <input [(ngModel)]="editingEmployee.EMAIL" name="EMAIL" required />
-        <input [(ngModel)]="editingEmployee.FIRST_NAME" name="FIRST_NAME" required />
-        <input [(ngModel)]="editingEmployee.LAST_NAME" name="LAST_NAME" required />
+        <input [(ngModel)]="editingEmployee.email" name="email" required />
+        <input [(ngModel)]="editingEmployee.first_name" name="first_name" required />
+        <input [(ngModel)]="editingEmployee.last_name" name="last_name" required />
         <button type="submit">Update Employee</button>
         <button type="button" (click)="editingEmployee = undefined">Cancel</button>
     </form>

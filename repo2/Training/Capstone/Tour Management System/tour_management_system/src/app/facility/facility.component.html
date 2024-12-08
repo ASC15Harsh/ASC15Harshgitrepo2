@@ -1,2 +1,68 @@
-<p>facility works!</p>
-<button type = "back" (click)="back()">Back</button>
+<p>Facility Management</p>
+
+<input type="text" [(ngModel)]="searchTerm" (input)="searchFacilities()" placeholder="Search by Facility Name" />
+
+<input type="text" [(ngModel)]="hotelSearchTerm" (input)="searchFacilities()" placeholder="Search by Hotel Name" />
+
+
+<div *ngIf="currentFacility">
+  <h3>Edit Facility</h3>
+  <form (ngSubmit)="saveFacility()">
+    <label for="name">Facility Name:</label>
+    <input type="text" [(ngModel)]="newFacility.name" name="name" required />
+
+    <label for="hotel">Hotel:</label>
+    <select [(ngModel)]="newFacility.hotel.id" name="hotel" required>
+      <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
+    </select>
+
+    <button type="submit">Update Facility</button>
+  </form>
+</div>
+
+<div *ngIf="!currentFacility">
+  <h3>Add New Facility</h3>
+  <form (ngSubmit)="saveFacility()">
+    <label for="name">Facility Name:</label>
+    <input type="text" [(ngModel)]="newFacility.name" name="name" required />
+
+    <label for="hotel">Hotel:</label>
+    <select [(ngModel)]="newFacility.hotel.id" name="hotel" required>
+      <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
+    </select>
+
+    <button type="submit">Add Facility</button>
+  </form>
+</div>
+
+<br />
+
+<div *ngIf="!currentFacility">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Hotel Name</th>
+        <th>Hotel Location</th>
+        <th>Hotel Rating</th>
+        <th>Hotel Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let facility of facilities">
+        <td>{{ facility.name }}</td>
+        <td>{{ facility.hotel.name }}</td>
+        <td>{{ facility.hotel.location }}</td>
+        <td>{{ facility.hotel.rating }}</td>
+        <td>{{ facility.hotel.price }}</td>
+        <td>
+          <button (click)="selectFacilityForEdit(facility)">Edit</button>
+          <button (click)="deleteFacility(facility.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button (click)="back()">Back</button>

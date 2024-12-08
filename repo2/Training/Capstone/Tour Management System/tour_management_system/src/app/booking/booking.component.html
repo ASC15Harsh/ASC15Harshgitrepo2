@@ -1,2 +1,97 @@
-<p>booking works!</p>
-<button type = "back" (click)="back()">Back</button>
+<div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+  <p>Booking Management</p>
+  
+  <input type="text" [(ngModel)]="searchTerm" (input)="searchBookings()" placeholder="Search by Booking ID" />
+  
+  <input type="text" [(ngModel)]="guestSearchTerm" (input)="searchBookings()" placeholder="Search by Guest Name" />
+  
+  <input type="text" [(ngModel)]="hotelSearchTerm" (input)="searchBookings()" placeholder="Search by Hotel Name" />
+  
+  <div *ngIf="currentBooking">
+    <h3>Edit Booking</h3>
+    <form (ngSubmit)="saveBooking()">
+      <label for="guest">Guest:</label>
+      <select [(ngModel)]="newBooking.guest.id" name="guest" required>
+        <option *ngFor="let guest of guests" [value]="guest.id">{{ guest.name }}</option>
+      </select>
+  
+      <label for="hotel">Hotel:</label>
+      <select [(ngModel)]="newBooking.hotel.id" name="hotel" required>
+        <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
+      </select>
+  
+      <label for="room">Room:</label>
+      <input type="number" [(ngModel)]="newBooking.room" name="room" required />
+  
+      <label for="checkinDate">Check-in Date:</label>
+      <input type="date" [(ngModel)]="newBooking.checkinDate" name="checkinDate" required />
+  
+      <label for="checkoutDate">Check-out Date:</label>
+      <input type="date" [(ngModel)]="newBooking.checkoutDate" name="checkoutDate" required />
+  
+      <button type="submit">Update Booking</button>
+    </form>
+  </div>
+  
+  <div *ngIf="!currentBooking">
+    <h3>Add New Booking</h3>
+    <form (ngSubmit)="saveBooking()">
+      <label for="guest">Guest:</label>
+      <select [(ngModel)]="newBooking.guest.id" name="guest" required>
+        <option *ngFor="let guest of guests" [value]="guest.id">{{ guest.name }}</option>
+      </select>
+  
+      <label for="hotel">Hotel:</label>
+      <select [(ngModel)]="newBooking.hotel.id" name="hotel" required>
+        <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
+      </select>
+  
+      <label for="room">Room:</label>
+      <input type="number" [(ngModel)]="newBooking.room" name="room" required />
+  
+      <label for="checkinDate">Check-in Date:</label>
+      <input type="date" [(ngModel)]="newBooking.checkinDate" name="checkinDate" required />
+  
+      <label for="checkoutDate">Check-out Date:</label>
+      <input type="date" [(ngModel)]="newBooking.checkoutDate" name="checkoutDate" required />
+  
+      <button type="submit">Add Booking</button>
+    </form>
+  </div>
+  
+  <br />
+  
+  <div *ngIf="!currentBooking">
+    <table>
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Guest Name</th>
+          <th>Hotel Name</th>
+          <th>Room</th>
+          <th>Check-in Date</th>
+          <th>Check-out Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td>{{ booking.id }}</td>
+          <td>{{ booking.guest.name }}</td>
+          <td>{{ booking.hotel.name }}</td>
+          <td>{{ booking.room }}</td>
+          <td>{{ booking.checkinDate }}</td>
+          <td>{{ booking.checkoutDate }}</td>
+          <td>
+            <button (click)="selectBookingForEdit(booking)">Edit</button>
+            <button (click)="deleteBooking(booking.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <button (click)="back()">Back</button>
+  

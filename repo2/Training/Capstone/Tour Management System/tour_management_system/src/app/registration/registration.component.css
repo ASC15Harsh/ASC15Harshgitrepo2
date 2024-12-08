@@ -66,20 +66,48 @@ button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-button[type = "back"] {
-  position: fixed;
-  top: 10px;   
-  right: 10px;  
-  background-color: red; 
-  color: white;    
-  border: none;  
-  padding: 10px 20px; 
-  font-size: 16px;  
-  cursor: pointer; 
-  border-radius: 5px; 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+  font-family: Arial, sans-serif;
 }
 
-button[type = "back"]:hover {
-  background-color: darkred; 
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+button[type="button"] {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 100; 
+}
+
+button[type="button"]:hover {
+  background-color: darkred;
 }
 

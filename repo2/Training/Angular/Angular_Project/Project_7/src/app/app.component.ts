@@ -25,18 +25,21 @@ export class AppComponent implements OnInit {
   }
 
   loadEmployees() {
-    this.employeeService.getEmployees().subscribe(data => this.employees = data);
+    this.employeeService.getEmployees().subscribe(data => {
+      console.log('Employees fetched:', data);
+      this.employees = data});
   }
 
   addEmployee() {
-    this.newEmployee.id = (this.highestId + 1).toString(); 
-    this.highestId = this.highestId + 1; 
+    // this.newEmployee.id = (this.highestId + 1).toString(); 
+    // this.highestId = this.highestId + 1; 
+    console.log('Adding Employee:', this.newEmployee);
     this.employeeService.addEmployee(this.newEmployee).subscribe(() => {
       this.loadEmployees();
       this.newEmployee = new user(); 
     });
   }
-
+  
   editEmployee(employee: user) {
     this.editingEmployee = { ...employee }; 
   }
