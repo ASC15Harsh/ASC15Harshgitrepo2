@@ -33,6 +33,9 @@ export class BookingComponent implements OnInit {
   newBooking: Booking = this.createEmptyBooking(); 
   successMessage: string = ''; 
 
+  minCheckinDate: string = new Date().toISOString().split("T")[0];
+
+
   ngOnInit(): void {
     this.loadBookings();
     this.loadGuests();  
@@ -77,6 +80,19 @@ export class BookingComponent implements OnInit {
   }
 
   saveBooking(): void {
+    const checkinDate = new Date(this.newBooking.checkinDate);
+    const checkoutDate = new Date(this.newBooking.checkoutDate);
+    const currentDate = new Date();
+
+    if (checkinDate < currentDate) {
+      alert("Check-in date cannot be in the past.");
+      return;
+    }
+
+    if (checkoutDate < checkinDate) {
+      alert("Checkout date cannot be before check-in date.");
+      return;
+    }
     if (this.newBooking.id) {
       this.bookingsService.updateBooking(this.newBooking.id, this.newBooking).subscribe(() => {
         this.loadBookings();  

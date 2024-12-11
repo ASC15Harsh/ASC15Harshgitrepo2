@@ -74,7 +74,7 @@ export class RegistrationComponent implements OnInit {
     this.admin.created_at = new Date().toISOString().slice(0, 19).replace("T", " ");
 
     if (!this.emailTaken && !this.phoneTaken && !this.nameError && !this.passwordError && !this.emailInvalid && !this.phoneInvalid) {
-      if (this.admin.id === '') {  // New registration
+      if (this.admin.id === '') { 
         this.employeeService.addadmins(this.admin).subscribe({
           next: (response) => {
             this.registrationSuccess = true;
@@ -88,7 +88,7 @@ export class RegistrationComponent implements OnInit {
             console.error('Registration failed:', err);
           }
         });
-      } else {  // Update
+      } else { 
         this.employeeService.updateadmins(this.admin).subscribe({
           next: (response) => {
             console.log('Update successful:', response);

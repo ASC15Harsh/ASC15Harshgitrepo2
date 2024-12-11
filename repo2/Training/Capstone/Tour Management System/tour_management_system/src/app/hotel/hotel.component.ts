@@ -20,6 +20,7 @@ export class HotelComponent implements OnInit {
   currentHotel: hotels | null = null; 
   newHotel: hotels = { id: '', name: '', location: '', rating: '', price: '', rooms: 0 }; 
 
+  
   ngOnInit(): void {
     this.loadHotels();
   }

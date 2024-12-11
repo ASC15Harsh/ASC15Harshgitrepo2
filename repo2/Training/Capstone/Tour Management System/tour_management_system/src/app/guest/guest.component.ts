@@ -19,6 +19,10 @@ export class GuestComponent implements OnInit {
   searchTerm: string = '';
   currentGuest: guests | null = null;
   newGuest: guests = { id: '', name: '', email: '', phone: '', nationality: '' }; 
+  emailTaken: boolean = false;
+  phoneTaken: boolean = false;
+  
+
   ngOnInit(): void {
     this.loadGuests();
   }
@@ -59,6 +63,16 @@ export class GuestComponent implements OnInit {
       });
     }
   }
+
+  checkIfEmailTaken(email: string): void {
+    this.emailTaken = this.guests.some(guest => guest.email === email);
+  }
+
+
+  checkIfPhoneTaken(phone: string): void {
+    this.phoneTaken = this.guests.some(guest => guest.phone === phone);
+  }
+
 
   searchGuests(): void {
     if (this.searchTerm) {
