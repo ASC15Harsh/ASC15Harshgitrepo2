@@ -1,0 +1,15 @@
+# Ignore environment file
+.env
+
+# Ignore the FAISS index files
+faiss_index/
+
+# Ignore Python bytecode files
+__pycache__/
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+
+# Ignore MacOS files
+.DS_Store
